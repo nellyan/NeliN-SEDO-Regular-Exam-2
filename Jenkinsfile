@@ -1,22 +1,11 @@
 pipeline {
-    agent {
-        agent any
-    }
+    agent any
 
     environment {
         DOTNET_VERSION = '6.0.x'
     }
 
     stages {
-        stage('Check Branch') {
-            when {
-                branch 'main'
-            }
-            steps {
-                echo "Running on main branch"
-            }
-        }
-
         stage('Checkout') {
             steps {
                 checkout scm
@@ -45,6 +34,12 @@ pipeline {
             steps {
                 bat 'dotnet test --no-build --verbosity normal'
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline completed.'
         }
     }
 }
