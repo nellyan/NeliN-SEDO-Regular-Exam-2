@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'windows' // Make sure this agent has .NET 6 installed
+        agent any
     }
 
     environment {
